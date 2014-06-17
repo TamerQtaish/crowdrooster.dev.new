@@ -1,0 +1,1 @@
+<h2><?= Lang::get('user.register_success.title') ?></h2>
