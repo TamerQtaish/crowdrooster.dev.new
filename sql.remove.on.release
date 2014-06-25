@@ -16,7 +16,6 @@ CREATE TABLE users
   `soft_deleted` tinyint(3) unsigned DEFAULT 0,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-#  `deleted_at` timestamp null
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -59,20 +58,20 @@ CREATE INDEX object_id ON access (`object_id`);
 # 3: Read, Write and Admin
 ##########################################################################################################
 
-CREATE TABLE social_links
+CREATE TABLE links
 (
   `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
   `object_id` int(12) DEFAULT 0,
   `object_type` tinyint(3) DEFAULT 1,
   `link_type` tinyint(3) DEFAULT 0,
-  `social_link` varchar(250),
+  `link` varchar(250),
   `soft_deleted` tinyint(3) unsigned DEFAULT 0,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-CREATE INDEX object_id ON social_links (`object_id`);
+CREATE INDEX object_id ON links (`object_id`);
 
 ##########################################################################################################
 # object_type:
@@ -113,6 +112,7 @@ CREATE INDEX object_id ON media_files (`object_id`);
 # object_type:
 # 1: User
 # 2: Company
+# 3: Posts
 #
 # media_type: (just examples)
 # 1: jpg, jpeg
@@ -125,8 +125,7 @@ CREATE INDEX object_id ON media_files (`object_id`);
 # 2: Company profile picture
 # 3: Company background image
 # 4: product small image
-# ==> etc
-# 4: product big image
+# 5: product big image
 #
 ##########################################################################################################
 
@@ -173,5 +172,255 @@ CREATE TABLE `sessions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 ##########################################################################################################
+
+CREATE TABLE companies
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `company_name` varchar(60),
+  `phone` varchar(30),
+  `email` varchar(60),
+  `industry_id` int(12),
+  `industry_category_id` int(12),
+  `crowdfunding_backers` int(12),
+  `funding_goal` float DEFAULT 0,
+  `funding_raised` float DEFAULT 0,
+  `vat_number` varchar(30),
+  `company_registration_id` varchar(30),
+  `currency_id` tinyint(3),
+  `commission_percentage` tinyint(3),
+  `vat_percentage` tinyint(3),
+  `company_status` tinyint(3) unsigned DEFAULT 0,
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+##########################################################################################################
+# industry_id:
+# Read from DB
+#
+# industry_category_id:
+# Read from DB
+# 
+# currency_id:
+# 1: USD
+# 2: GBP
+# 3: EUR
+# => etc
+# 
+# company_status:
+# 0: Inactive
+# 1: Active
+# 2: Partner 
+#
+##########################################################################################################
+
+CREATE TABLE industries
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `industry_name` varchar(60),
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+##########################################################################################################
+
+CREATE TABLE industry_categories
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `industry_id` int(12),
+  `industry_category_name` varchar(60),
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+##########################################################################################################
+
+CREATE TABLE contents
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `object_id` int(12) DEFAULT 0,
+  `object_type` tinyint(3) DEFAULT 1,
+  `content_type` tinyint(3) DEFAULT 0,
+  `content` text,
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE INDEX object_id ON contents (`object_id`);
+
+##########################################################################################################
+# object_id:
+# 1: Site Content
+# 2: Company Content
+# 3: User Content
+#
+# content_type:
+# 1: Company Description
+# 2: Site About us
+# 3: Company About us
+# => etc
+##########################################################################################################
+
+CREATE TABLE products
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `company_id` int(12) DEFAULT 0,
+  `product_name` varchar(30),
+  `product_type` tinyint(3) DEFAULT 1,
+  `product_commission_percentage` tinyint(3),
+  `price` float DEFAULT 0,
+  `currency_id` tinyint(3) DEFAULT 1,
+  `product_status` tinyint(3) DEFAULT 1,
+  `days_for_delivery` tinyint(4) DEFAULT 1, 
+  `availability_date` int(12) DEFAULT 1, 
+  `featrued_status` tinyint(3) DEFAULT 0,
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_by` int(12) DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE INDEX company_id ON products (`company_id`);
+
+##########################################################################################################
+# product_type:
+# 1: Pre Order
+# 2: Shop Ready
+#
+# product_status:
+# 1: Draft
+# 2: Pendding
+# 3: Rejected
+# 4: Approved
+#
+# featrued_status:
+# 0: Not featured
+# 1: Featured on home page
+# => etc
+# 
+# currency_id:
+# 1: USD
+# 2: GBP
+# 3: EUR
+# => etc
+#
+##########################################################################################################
+
+CREATE TABLE shipping_costs
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `region_code` varchar(10),
+  `shipping_cost` float DEFAULT 0,
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_by` int(12) DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE INDEX region_code ON shipping_costs (`region_code`);
+
+##########################################################################################################
+# object_id:
+# 1: Site Content
+# 2: Company Content
+# 3: User Content
+#
+##########################################################################################################
+
+CREATE TABLE attributes
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `product_id` int(12) DEFAULT 0,
+  `attribute_name` varchar(30),
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE INDEX product_id ON attributes (`product_id`);
+
+##########################################################################################################
+
+CREATE TABLE attribute_values
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `attribute_id` int(12) DEFAULT 0,
+  `attribute_value` varchar(30),
+  `media_file_id` int(12) DEFAULT 0,
+  `extra_cost` float DEFAULT 0,
+  `extra_days_for_delivery` tinyint(4) DEFAULT 0, 
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE INDEX attribute_id ON attribute_values (`attribute_id`);
+CREATE INDEX media_file_id ON attribute_values (`media_file_id`);
+
+##########################################################################################################
+
+CREATE TABLE shopping_carts
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `user_id` int(12) DEFAULT 0,
+  `product_id` int(12) DEFAULT 0,
+  `quantity` tinyint(3) unsigned DEFAULT 1,
+  `token_code` varchar(30), 
+  `shopping_cart_status` tinyint(3) DEFAULT 0, 
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE INDEX user_id ON shopping_carts (`user_id`);
+CREATE INDEX product_id ON shopping_carts (`product_id`);
+
+##########################################################################################################
+
+CREATE TABLE shopping_cart_attributes
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `shopping_cart_id` int(12) DEFAULT 0,
+  `attribute_value_id` int(12) DEFAULT 0,
+  `soft_deleted` tinyint(3) unsigned DEFAULT 0,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE INDEX shopping_cart_id ON shopping_cart_attributes (`shopping_cart_id`);
+CREATE INDEX attribute_value_id ON shopping_cart_attributes (`attribute_value_id`);
+
+##########################################################################################################
+
+CREATE TABLE action_logs
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `object_id` int(12) DEFAULT 0,
+  `object_type` varchar(30),
+  `user_id` int(12) DEFAULT 0,
+  `action_key` varchar(30),
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+##########################################################################################################
+
+
+
 
 
