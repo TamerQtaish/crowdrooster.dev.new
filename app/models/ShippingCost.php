@@ -10,5 +10,3 @@ class ShippingCost extends Eloquent {
 	protected $table = 'shipping_costs';
 
 }
-
-?>

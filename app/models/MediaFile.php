@@ -10,5 +10,3 @@ class MediaFile extends Eloquent {
 	protected $table = 'media_files';
 
 }
-
-?>

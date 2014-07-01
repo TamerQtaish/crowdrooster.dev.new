@@ -9,6 +9,9 @@ class Industry extends Eloquent {
 	 */
 	protected $table = 'industries';
 
-}
+	public function categories()
+	{
+		return $this->hasMany('industry_categories', 'id', 'industry_id');
+	}
 
-?>
+}

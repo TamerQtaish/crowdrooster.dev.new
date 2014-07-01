@@ -10,5 +10,3 @@ class Payment extends Eloquent {
 	protected $table = 'payments';
 
 }
-
-?>

@@ -22,7 +22,7 @@ class UserController extends BaseController {
 				'last_name' => 'required',
 				'accept_t_and_c' => 'required',
 				'password' => 'required|min:8|confirmed',
-				'email' => 'required|email'
+				'email' => 'required|email|unique:users,email'
 			      );
 
 		$validator = Validator::make(Input::all(), $rules);
@@ -53,6 +53,17 @@ class UserController extends BaseController {
 		$user->signup_ip = Request::getClientIp();
 
 		$user->save();
+
+		// set the action log data array
+		$action_settings = array(
+			'object_id' => $user->id,
+			'object_type' => $user->object_type,
+			'user_id' => Auth::user()->id,
+			'action_key' => 'user.create'
+		);
+
+		// run this function to create new action record in the DB
+		$action = ActionLog::createAction($action_settings);
 
 		return View::make('index', array(
 					'title' => Lang::get('user.register_success.title')

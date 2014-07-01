@@ -9,6 +9,9 @@ class Attribute extends Eloquent {
 	 */
 	protected $table = 'attributes';
 
-}
+	public function values()
+	{
+		return $this->hasMany('attribute_values', 'attribute_id', 'id');
+	}
 
-?>
+}

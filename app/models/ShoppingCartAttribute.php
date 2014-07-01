@@ -10,5 +10,3 @@ class ShoppingCartAttribute extends Eloquent {
 	protected $table = 'shopping_cart_attributes';
 
 }
-
-?>

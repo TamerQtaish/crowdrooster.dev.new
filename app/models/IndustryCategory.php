@@ -9,6 +9,9 @@ class IndustryCategory extends Eloquent {
 	 */
 	protected $table = 'industry_categories';
 
-}
+	public function industry()
+	{
+		return $this->belongsTo('industries', 'industry_id' , 'id');
+	}
 
-?>
+}

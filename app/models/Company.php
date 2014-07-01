@@ -9,6 +9,14 @@ class Company extends Eloquent {
 	 */
 	protected $table = 'companies';
 
-}
+	public function links()
+	{
+		return $this->hasMany('links', 'id', 'object_id');
+	}
 
-?>
+	public function users()
+	{
+		return $this->hasMany('users');
+	}
+
+}

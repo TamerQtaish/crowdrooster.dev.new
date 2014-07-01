@@ -9,6 +9,9 @@ class AttributeValue extends Eloquent {
 	 */
 	protected $table = 'attribute_values';
 
-}
+	public function attribute()
+	{
+		return $this->belongsTo('attributes', 'attribute_id', 'id');
+	}
 
-?>
+}
