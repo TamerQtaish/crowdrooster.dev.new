@@ -43,6 +43,20 @@ class Link extends Eloquent {
 	public function user() {
 		return $this->belongsTo('User', 'object_id');
 	}
+
+	/**
+	 * Return object type Name
+	 */
+	public function getObjectTypeName() {
+		return self::$object_type[$this->object_type];
+	}
+
+	/**
+	 * Return link type Name
+	 */
+	public function getLinkTypeName() {
+		return self::$link_type[$this->link_type];
+	}
 		
 	static public function createLink($data = array()){
 		// create instance of Link
@@ -59,13 +73,5 @@ class Link extends Eloquent {
 
 		// return the new DB records id
 		return $link;
-	}
-	
-	public function getObjectTypeName() {
-		return self::$object_type[$this->object_type];
-	}
-
-	public function getLinkTypeName() {
-		return self::$link_type[$this->link_type];
-	}
+	}	
 }

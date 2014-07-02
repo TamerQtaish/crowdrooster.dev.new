@@ -157,6 +157,7 @@ CREATE INDEX object_id ON addresses (`object_id`);
 # address_type:
 # 1: Shipping address
 # 2: Billing address
+# 3: Location address
 #
 ##########################################################################################################
 
