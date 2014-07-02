@@ -9,14 +9,11 @@ class Company extends Eloquent {
 	 */
 	protected $table = 'companies';
 
-	public function links()
-	{
-		return $this->hasMany('links', 'id', 'object_id');
-	}
-
-	public function users()
-	{
-		return $this->hasMany('users');
+	/**
+	 * Link relationship - one to many
+	 */
+	public function links() {
+		return $this->hasMany('Link', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}
 
 }

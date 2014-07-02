@@ -20,6 +20,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password');
 
 	/**
+	 * Link relationship - one to many
+	 */
+	public function links() {
+		return $this->hasMany('Link', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+	}
+	
+	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed

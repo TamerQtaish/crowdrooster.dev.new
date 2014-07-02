@@ -1,1 +1,8 @@
+
+
+ALTER TABLE links ADD link_text varchar(250);
+
 ALTER TABLE `users` CHANGE `remember_token` `remember_token` VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;
+
+
+

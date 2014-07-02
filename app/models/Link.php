@@ -8,7 +8,42 @@ class Link extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'links';
-
+	
+	/**
+	 * Define the static vars for the class
+	 *
+	 *  @var array
+	 */
+	
+	static $object_type = [1 => 'user',
+			       2 => 'company',
+			       ];
+	
+	static $link_type = [1 => 'facebook',
+			     2 => 'twitter',
+			     3 => 'linkedIn',
+			     4 => 'google+',
+			     5 => 'pinterest',
+			     6 => 'youtube',
+			     7 => 'pressLink',
+			     8 => 'homePage',
+			     ];
+	
+	
+	/**
+	 * Company relationship - many to one
+	 */	
+	public function company() {
+		return $this->belongsTo('Company', 'object_id');
+	}
+		
+	/**
+	 * User relationship - many to one
+	 */	
+	public function user() {
+		return $this->belongsTo('User', 'object_id');
+	}
+		
 	static public function createLink($data = array()){
 		// create instance of Link
 		$link = new Link;
@@ -24,5 +59,13 @@ class Link extends Eloquent {
 
 		// return the new DB records id
 		return $link;
+	}
+	
+	public function getObjectTypeName() {
+		return self::$object_type[$this->object_type];
+	}
+
+	public function getLinkTypeName() {
+		return self::$link_type[$this->link_type];
 	}
 }

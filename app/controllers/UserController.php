@@ -58,7 +58,7 @@ class UserController extends BaseController {
 		$action_settings = array(
 			'object_id' => $user->id,
 			'object_type' => $user->object_type,
-			'user_id' => Auth::user()->id,
+			'user_id' => $user->id,
 			'action_key' => 'user.create'
 		);
 
