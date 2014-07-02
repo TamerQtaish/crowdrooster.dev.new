@@ -4,15 +4,6 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
-
-	 protected $fillable = ['email',
-				'password',
-				'first_name',
-				'first_name',
-				'signup_ip',
-				'last_ip',
-				'phone',
-				''];
 	 
 	/**
 	 * The database table used by the model.
@@ -96,7 +87,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	static public function checkEmailExists($email)
 	{
-		if($x = is_object(User::where('email', $email)->where('soft_deleted', 0)->first())) {
+		if(is_object(User::where('email', $email)->where('soft_deleted', 0)->first())) {
 			return true;
 		} else {
 			return false;

@@ -10,28 +10,20 @@ class Access extends Eloquent {
 	protected $table = 'access';
 
 	static public function createAccess($data = array()){
+		// create instance of Access
+		$access = new Access;
 
-		if(is_object($data)){
+		// set the access fields
+		$access->user_id = $data['user_id'];
+		$access->object_id = $data['object_id'];
+		$access->object_type = $data['object_id'];
+		$access->access_level = $data['access_level'];
 
-			// create instance of Access
-			$access = new Access;
+		// save the record to the DB
+		$access->save();
 
-			// set the access fields
-			$access->user_id = $data['user_id'];
-			$access->object_id = $data['object_id'];
-			$access->object_type = $data['object_id'];
-			$access->access_level = $data['access_level'];
-
-			// save the record to the DB
-			$access->save();
-
-			// return the new DB record
-			return $access;
-
-		}else{
-			throw new exception('Your access could not be granted');
-		}
-
+		// return the new DB record
+		return $access;
 	}
 
 	static public function editAccess($data = array()){

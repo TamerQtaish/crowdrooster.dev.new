@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'crowdrooster-laravel',
+			'database'  => 'crowdrooster',
 			'username'  => 'root',
-			'password'  => 'thistle_7',
+			'password'  => 't00r',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
