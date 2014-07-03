@@ -63,7 +63,7 @@ class TestController extends Controller {
 	    
 	    $data = ['name'=>'tamer'];
 	    
-	    Mail::send('emails.welcome', $data, function($message)
+	    Mail::queue('emails.welcome', $data, function($message)
 	    {
 		$message->to('TamerQtaish@gmail.com', 'Tamer Qtaish')->subject('Welcome!');
 	    });	    
