@@ -26,9 +26,19 @@ Route::get('/test', 'TestController@index');
 // User Routes
 Route::get('/user/register', 'UserController@getRegister');
 Route::post('/user/register', 'UserController@postRegister');
+
 Route::get('/user/login', 'UserController@getLogin');
 Route::post('/user/login', 'UserController@postLogin');
+
 Route::any('/user/logout', 'UserController@logout');
+
+Route::get('/user/reset_password/{token}', 'UserController@getResetPasswordForm');
+Route::post('/user/reset_password/{token}', 'UserController@postResetPasswordForm');
+
+Route::get('/user/forgot_password', 'UserController@getForgotPassword');
+Route::post('/user/forgot_password', 'UserController@postForgotPassword');
+
+
 
 // Company Routes
 Route::get('/company/register', 'CompanyController@getRegister');

@@ -31,4 +31,20 @@ return array(
     'register_success' => array(
                                 'title' => 'Register Success',
                                 ),
+    'forgot_password' => array(
+                               'title' => 'Password Recovery',
+                               'description' => 'Enter your password and an email will be sent with a link to recover your password.',
+                               'form' => array(
+                                                'email' => 'email',
+                                                'submit' => 'Recover Password',
+                                            ),
+                                'errors' => array(
+                                                'account_not_found' => 'Ops! That account was not found!',
+                                                ),
+                                'email' =>array(
+                                                'subject' => 'Password Recovery', 
+                                                'description' => 'Click the link below to go to password Recovery', 
+                                                ),
+                                
+                               ),
 );

@@ -119,4 +119,69 @@ class UserController extends BaseController {
 		Auth::logout();
 		return Redirect::to('/');
 	}
+	
+	public function getForgotPassword() {
+		$input = Input::old();
+
+		return View::make('index', array(
+					'title' => Lang::get('user.forgot_password.title')
+					))
+			->nest('viewBody', 'user.forgot_password', array(
+						'input' => $input
+						));		
+	}
+
+
+	public function postForgotPassword() {
+		$input = Input::all();
+
+		$rules = array('email' => 'required|email');
+
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::to('user/forgot_password')->withInput()
+				->with('notification', array(
+							'type' => 'error',
+							'message' => $validator->errors()
+							));
+		}		
+
+
+		// Chjeck if users exists
+		$user = User::where('email', $input['email'])
+			->where('soft_deleted', '0')
+			->first();
+
+		if (empty($user->email)) {
+			return Redirect::to('user/forgot_password')->withInput()
+				->with('notification', array(
+							'type' => 'error',
+							'message' =>  Lang::get('user.forgot_password.errors.account_not_found')
+							));			
+		} 
+
+		// Generate a new token
+		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		$user->reset_token = substr(str_shuffle($chars),0,24);
+		$user->save();
+		
+		$data = array('lang' => Lang::get('user.forgot_password.email'),
+				'reset_token_url' => url('/user/reset_password/'.$user->reset_token),			  
+				);
+		
+		Mail::queue('emails.forgot_password', $data, function($message) use ($user)
+		{
+		    $message->to($user->email, $user->first_name.' '.$user->last_name)->subject(Lang::get('user.forgot_password.email.subject'));
+		});		
+		
+		die();
+		return View::make('index', array(
+					'title' => Lang::get('user.forgot_password.title')
+					))
+			->nest('viewBody', 'user.forgot_password', array(
+						'input' => $input
+						));		
+	}
+
 }
