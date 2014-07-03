@@ -38,7 +38,15 @@ class Company extends Eloquent {
 	 */
 	public function products()
 	{
-		return $this->hasMany('Product', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->hasMany('Product', 'company_id')->where('soft_deleted', 0);
 	}	
+
+	/**
+	 * Content relationship - one to many
+	 */
+	public function contents()
+	{
+		return $this->hasMany('Content', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+	}		
 
 }

@@ -46,4 +46,12 @@ class Product extends Eloquent {
 		return $this->hasMany('Attribute', 'product_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
 
+	/**
+	 * Company relationship - many to one
+	 */	
+	public function company()
+	{
+		return $this->belongsTo('Company', 'company_id')->where('soft_deleted', 0);		
+	}
+
 }

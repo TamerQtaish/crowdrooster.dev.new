@@ -21,7 +21,7 @@ Route::get('/', 'HomeController@index');
 
 // Testing section for dev
 Route::get('/test', 'TestController@index');
-
+Route::get('/shaun-test', 'ShaunsController@index');
 
 // User Routes
 Route::get('/user/register', 'UserController@getRegister');

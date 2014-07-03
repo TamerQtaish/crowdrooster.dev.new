@@ -31,10 +31,10 @@ class Access extends Eloquent {
 	}
 
 	/**
-	 * Link relationship - one to many
+	 * Company relationship - one to one
 	 */
-	public function companies() {
-		return $this->hasOne('Company', 'id')->where('soft_deleted', 0);
+	public function company() {
+		return $this->hasOne('Company', 'company_id')->where('soft_deleted', 0);
 	}
 	
 	/**
