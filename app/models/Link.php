@@ -15,20 +15,21 @@ class Link extends Eloquent {
 	 *  @var array
 	 */
 	
-	static $object_type = [1 => 'user',
-			       2 => 'company',
-			       ];
+	static $object_type = [	1 => 'user',
+					       	2 => 'company',
+					       	3 => 'product',
+					       	4 => 'page',
+	];
 	
-	static $link_type = [1 => 'facebook',
-			     2 => 'twitter',
-			     3 => 'linkedIn',
-			     4 => 'google+',
-			     5 => 'pinterest',
-			     6 => 'youtube',
-			     7 => 'pressLink',
-			     8 => 'homePage',
-			     ];
-	
+	static $link_type = [	1 => 'facebook',
+			     			2 => 'twitter',
+			     			3 => 'linkedIn',
+							4 => 'google+',
+							5 => 'pinterest',
+							6 => 'youtube',
+							7 => 'pressLink',
+							8 => 'homePage',
+	];
 	
 	/**
 	 * Company relationship - many to one

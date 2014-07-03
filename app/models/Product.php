@@ -2,6 +2,11 @@
 
 class Product extends Eloquent {
 
+	// unsure about media type
+	// should we differenciate between media type which could be image, video or document for example
+	// then create a file extension type to store gif, jpg, mp4, wmv for example
+	// the wording just soudnds strange to me
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -18,9 +23,17 @@ class Product extends Eloquent {
 	}
 
 	/**
-	 * Media File relationship - one to many
+	 * Media File relationship (videos) - one to one
+	 */		
+	public function video()
+	{
+		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Media File relationship (images) - one to many
 	 */
-	public function media()
+	public function images()
 	{
 		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}

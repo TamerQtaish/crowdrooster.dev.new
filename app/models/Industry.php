@@ -10,7 +10,7 @@ class Industry extends Eloquent {
 	protected $table = 'industries';
 
 	/**
-	 * InustryCategory relationship - one to many
+	 * Inustry Category relationship - one to many
 	 */
 	public function categories()
 	{
