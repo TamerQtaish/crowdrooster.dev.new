@@ -11,7 +11,7 @@ class IndustryCategory extends Eloquent {
 
 	public function industry()
 	{
-		return $this->belongsTo('industries', 'industry_id' , 'id');
+		return $this->belongsTo('Industry', 'industry_id' , 'id');
 	}
 
 }

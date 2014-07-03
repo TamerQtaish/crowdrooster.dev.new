@@ -11,7 +11,7 @@ class Attribute extends Eloquent {
 
 	public function values()
 	{
-		return $this->hasMany('attribute_values', 'attribute_id', 'id');
+		return $this->hasMany('AttributeValue', 'attribute_id')->where('soft_deleted', 0);
 	}
 
 }

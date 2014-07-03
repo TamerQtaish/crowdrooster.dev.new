@@ -11,7 +11,7 @@ class AttributeValue extends Eloquent {
 
 	public function attribute()
 	{
-		return $this->belongsTo('attributes', 'attribute_id', 'id');
+		return $this->belongsTo('Attribute', 'attribute_id', 'id');
 	}
 
 }
