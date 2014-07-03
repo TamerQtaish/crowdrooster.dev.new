@@ -12,11 +12,13 @@ class ActionLog extends Eloquent {
 	/**
 	 * User relationship - many to one
 	 */	
-	public function user() {
+	public function user() 
+	{
 		return $this->belongsTo('User', 'user_id');
 	}
 
-	static public function createAction($data = array()){
+	static public function createAction($data = [])
+	{
 		// create instance of ActionLog
 		$action = new ActionLog;
 

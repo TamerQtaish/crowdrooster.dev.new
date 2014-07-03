@@ -14,35 +14,28 @@ class MediaFile extends Eloquent {
 	 */
 	protected $table = 'media_files';
 
-	static $object_type = [	1 => 'user',
-					       	2 => 'company',
-					       	3 => 'product',
-					       	4 => 'page',
+	static $object_type = [	
+		1 => 'user',
+		2 => 'company',
+		3 => 'product',
+		4 => 'page',
 	];
 	
-	static $media_type = [	1 => 'jpg',
-							2 => 'jpeg',
-			     			3 => 'png',
-			     			4 => 'gif',
-			     			5 => 'wmv',
-			     			6 => 'swf',
-			     			7 => 'mp4',
-			     			8 => 'mkv',
-			     			9 => 'avi'
-			     			10 => 'youtube',
-			     			11 => 'wistia',
-			     			12 => 'vimeo',
+	static $media_type = [	
+		1 => 'image',
+		2 => 'video',
 	];
 
-	static $usage_type = [	1 => 'profile picture',
-							2 => 'cover image',
-			     			3 => 'content image',
-			     			4 => 'attribute image',
-			     			4 => 'comment image',			     			
+	static $usage_type = [	
+		1 => 'profile_picture',
+		2 => 'cover_image',
+		3 => 'content_image',
+		4 => 'attribute_image',
+		5 => 'comment_image',			     			
 	];
 
 	/**
-	 * Media File relationship (videos) - many to one
+	 * Product relationship - many to one
 	 */
 	public function product()
 	{
