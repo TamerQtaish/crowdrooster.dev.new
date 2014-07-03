@@ -1,13 +1,13 @@
 <?php
 
 class TestController extends Controller {
-	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
-	protected function index()
-	{
+    /**
+     * Setup the layout used by the controller.
+     *
+     * @return void
+     */
+    protected function index()
+    {
             echo '<pre>';            
 
             /*
@@ -53,27 +53,9 @@ class TestController extends Controller {
                 echo $access->getAccessLevelName();
             }
             */
-<<<<<<< HEAD
             
             $user = User::find( Auth::user()->id );
             print_r($user->actionLogs);
-=======
 
-	    /*
-	     // Test user action logs 
-            $user = User::find(1);
-            print_r($user->actionLogs);
-            */
-	    
-	    
-	    $data = ['name'=>'tamer'];
-	    
-	    Mail::send('emails.welcome', $data, function($message)
-	    {
-		$message->to('TamerQtaish@gmail.com', 'Tamer Qtaish')->subject('Welcome!');
-	    });	    
-	    
->>>>>>> FETCH_HEAD
-            
-	}
+    }
 }
