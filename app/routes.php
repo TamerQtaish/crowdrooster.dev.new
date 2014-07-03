@@ -32,8 +32,8 @@ Route::post('/user/login', 'UserController@postLogin');
 
 Route::any('/user/logout', 'UserController@logout');
 
-Route::get('/user/reset_password/{token}', 'UserController@getResetPasswordForm');
-Route::post('/user/reset_password/{token}', 'UserController@postResetPasswordForm');
+Route::get('/user/reset_password/{token}', 'UserController@getResetPassword');
+Route::post('/user/reset_password/{token}', 'UserController@postResetPassword');
 
 Route::get('/user/forgot_password', 'UserController@getForgotPassword');
 Route::post('/user/forgot_password', 'UserController@postForgotPassword');

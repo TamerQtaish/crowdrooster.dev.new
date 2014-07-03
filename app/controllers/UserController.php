@@ -56,11 +56,11 @@ class UserController extends BaseController {
 
 		// set the action log data array
 		$action_settings = array(
-			'object_id' => $user->id,
-			'object_type' => $user->object_type,
-			'user_id' => $user->id,
-			'action_key' => 'user.create'
-		);
+				'object_id' => $user->id,
+				'object_type' => $user->object_type,
+				'user_id' => $user->id,
+				'action_key' => 'user.create'
+				);
 
 		// run this function to create new action record in the DB
 		$action = ActionLog::createAction($action_settings);
@@ -119,7 +119,7 @@ class UserController extends BaseController {
 		Auth::logout();
 		return Redirect::to('/');
 	}
-	
+
 	public function getForgotPassword() {
 		$input = Input::old();
 
@@ -145,8 +145,7 @@ class UserController extends BaseController {
 							'type' => 'error',
 							'message' => $validator->errors()
 							));
-		}		
-
+		}	
 
 		// Chjeck if users exists
 		$user = User::where('email', $input['email'])
@@ -165,23 +164,132 @@ class UserController extends BaseController {
 		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 		$user->reset_token = substr(str_shuffle($chars),0,24);
 		$user->save();
-		
-		$data = array('lang' => Lang::get('user.forgot_password.email'),
-				'reset_token_url' => url('/user/reset_password/'.$user->reset_token),			  
-				);
-		
+
+		$data = array('lang' => Lang::get('emails.forgot_password'),
+				'reset_token_url' => url('/user/reset_password/'.$user->reset_token.'-'.$user->id),			  
+			     );
+
 		Mail::queue('emails.forgot_password', $data, function($message) use ($user)
-		{
-		    $message->to($user->email, $user->first_name.' '.$user->last_name)->subject(Lang::get('user.forgot_password.email.subject'));
-		});		
-		
-		die();
-		return View::make('index', array(
-					'title' => Lang::get('user.forgot_password.title')
-					))
-			->nest('viewBody', 'user.forgot_password', array(
-						'input' => $input
-						));		
+				{
+				$message->to($user->email, $user->first_name.' '.$user->last_name)->subject(Lang::get('emails.forgot_password.subject'));
+				});		
+
+		return Redirect::to('/')->withInput()
+			->with('notification', array(
+						'type' => 'success',
+						'message' =>  Lang::get('user.forgot_password.success')
+						));
 	}
+
+	/**
+	 * Displays the reset password form, if the token is valid
+	 *
+	 * @param string $token Reset Token
+	 * @return Response
+	 */
+	public function getResetPassword($token) {
+		try {
+			$tokenParts = explode('-', $token);
+
+			if(!isset($tokenParts[0]) || !isset($tokenParts[1])) {
+				return Redirect::to('/')
+					->withInput()
+					->with('notification', array(
+								'type' => 'error',
+								'message' => Lang::get('user.reset_password.errors.invalide_token')
+								));					
+			}
+
+
+			// Check token is valid
+			$user = User::where('id', $tokenParts[1])->where('reset_token', $tokenParts[0])->first();
+			if (empty($user->email)) {
+				return Redirect::to('/')
+					->withInput()
+					->with('notification', array(
+								'type' => 'error',
+								'message' => Lang::get('user.reset_password.errors.invalide_token')
+								));					
+			}
+
+			// View
+			return 	View::make('index', array('title' => Lang::get('interface.reset.title')))
+				->nest('viewBody', 'user.reset_password', array(
+							'token' => $token
+							));
+		} catch (Exception $e) {
+			// Return to edit
+			return Redirect::to('/')
+				->withInput()
+				->with('notification', array(
+							'type' => 'error',
+							'message' => $e->getMessage()
+							));
+		}
+	}	
+
+	/**
+	 * Sets a new password
+	 *
+	 * @param string $token Reset Token
+	 * @return Response
+	 */
+	public function postResetPassword($token) {
+		$tokenParts = explode('-', $token);
+
+		if(!isset($tokenParts[0]) || !isset($tokenParts[1])) {
+			return Redirect::to('/')
+				->withInput()
+				->with('notification', array(
+							'type' => 'error',
+							'message' => Lang::get('user.reset_password.errors.invalide_token')
+							));					
+		}
+
+
+		// Check token is valid
+		$user = User::where('id', $tokenParts[1])->where('reset_token', $tokenParts[0])->first();
+		if (empty($user->email)) {
+			return Redirect::to('/')
+				->withInput()
+				->with('notification', array(
+							'type' => 'error',
+							'message' => Lang::get('user.reset_password.errors.invalide_token')
+							));					
+		}
+
+		// Check passwords match and meet validation criteria
+		$rules = array(
+				'password' => 'required|min:8|confirmed',
+			      );
+
+		$input = Input::all();
+
+		// Test our validation against the form input
+		$validation = Validator::make($input, $rules);
+		if ($validation->fails()) {
+			// Validation error
+			return Redirect::to('reset_password/'.$token)
+				->withInput()
+				->with('notification', array(
+							'type' => 'error',
+							'message' => $validation->errors()
+							));
+		}
+
+		// Update password
+		$user->password = Hash::make($input['password']);
+		$user->reset_token = null;
+		$user->save();
+
+		// Redirect
+		return Redirect::to('/')
+			->withInput()
+			->with('notification', array(
+						'type' => 'success',
+						'message' => Lang::get('user.reset_password.success')
+						));
+
+	}	
 
 }

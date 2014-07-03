@@ -41,10 +41,19 @@ return array(
                                 'errors' => array(
                                                 'account_not_found' => 'Ops! That account was not found!',
                                                 ),
-                                'email' =>array(
-                                                'subject' => 'Password Recovery', 
-                                                'description' => 'Click the link below to go to password Recovery', 
-                                                ),
+                                'success' => 'email was sent successfuly!',
                                 
                                ),
+    'reset_password' => array(
+                                'title'     => 'Password Recovery',
+                                'form' => array(
+                                                'password' => 'Password',
+                                                'password_confirmation' => 'Re-Password',
+                                                'submit' => 'Set New Password',
+                                                ),
+                                'errors' => array(
+                                                  'invalide_token' => 'Invalide token Recived',
+                                                 ),                               
+                                'success' => 'Your password has been changed successfully',
+                              ),
 );
