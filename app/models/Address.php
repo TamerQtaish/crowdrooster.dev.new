@@ -28,14 +28,14 @@ class Address extends Eloquent {
 	 * Company relationship - many to one
 	 */	
 	public function company() {
-		return $this->belongsTo('Company', 'object_id')->where('object_type', 1);
+		return $this->belongsTo('Company', 'object_id')->where('object_type', 2);
 	}
 		
 	/**
 	 * User relationship - many to one
 	 */	
 	public function user() {
-		return $this->belongsTo('User', 'object_id');
+		return $this->belongsTo('User', 'object_id')->where('object_type', 1);
 	}
 
 	/**

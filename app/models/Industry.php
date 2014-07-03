@@ -9,9 +9,12 @@ class Industry extends Eloquent {
 	 */
 	protected $table = 'industries';
 
+	/**
+	 * InustryCategory relationship - one to many
+	 */
 	public function categories()
 	{
-		return $this->hasMany('industry_categories', 'id', 'industry_id');
+		return $this->hasMany('IndustryCategory', 'industry_id')->where('soft_deleted', 0);
 	}
 
 }

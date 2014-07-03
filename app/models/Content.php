@@ -25,4 +25,39 @@ class Content extends Eloquent {
 		// return the new DB record
 		return $content;
 	}
+
+	// content types - 1 = company content, 2 = page content, 3 = user content & 4 = product content
+
+	/**
+	 * Page relationship - many to one
+	 */
+	public function page()
+	{
+		return $this->belongsTo('Page', 'object_id')->where('object_type', 4)->where('content_type', 2)->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Product relationship - many to one
+	 */
+	public function product()
+	{
+		return $this->belongsTo('Product', 'object_id')->where('object_type', 3)->where('content_type', 4)->where('soft_deleted', 0);
+	}	
+
+	/**
+	 * Company relationship - many to one
+	 */
+	public function company()
+	{
+		return $this->belongsTo('Company', 'object_id')->where('object_type', 2)->where('content_type', 1)->where('soft_deleted', 0);
+	}	
+
+	/**
+	 * User relationship - many to one
+	 */
+	public function user()
+	{
+		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('content_type', 3)->where('soft_deleted', 0);
+	}	
+
 }

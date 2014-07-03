@@ -8,5 +8,13 @@ class ShoppingCart extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'shopping_carts';
+
+	/**
+	 * Shopping Cart Attributes relationship - one to many
+	 */
+	public function attributes()
+	{
+		return $this->hasMany('ShoppingCartAttribute', 'shopping_cart_id')->where('soft_deleted', 0);
+	}
 	
 }

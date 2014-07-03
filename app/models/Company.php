@@ -12,22 +12,33 @@ class Company extends Eloquent {
 	/**
 	 * Access relationship - many to one
 	 */	
-	public function access() {
+	public function access() 
+	{
 		return $this->belongsTo('Access', 'object_id');
 	}
 
 	/**
 	 * Link relationship - one to many
 	 */
-	public function links() {
+	public function links() 
+	{
 		return $this->hasMany('Link', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}
 
 	/**
 	 * Address relationship - one to many
 	 */
-	public function addresses() {
+	public function addresses() 
+	{
 		return $this->hasMany('Address', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}
+
+	/**
+	 * Product relationship - one to many
+	 */
+	public function products()
+	{
+		return $this->hasMany('Product', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+	}	
 
 }

@@ -9,14 +9,20 @@ class Product extends Eloquent {
 	 */
 	protected $table = 'products';
 
+	/**
+	 * Comment relationship - one to many
+	 */
 	public function comments()
 	{
-		return $this->hasMany('Comment', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->hasMany('Comment', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
 
+	/**
+	 * Media File relationship - one to many
+	 */
 	public function media()
 	{
-		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
 
 }

@@ -34,14 +34,14 @@ class Link extends Eloquent {
 	 * Company relationship - many to one
 	 */	
 	public function company() {
-		return $this->belongsTo('Company', 'object_id');
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}
 		
 	/**
 	 * User relationship - many to one
 	 */	
 	public function user() {
-		return $this->belongsTo('User', 'object_id');
+		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
