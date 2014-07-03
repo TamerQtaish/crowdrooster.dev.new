@@ -18,11 +18,11 @@ class AttributeValue extends Eloquent {
 	}
 
 	/**
-	 * Media File relationship - many to one
+	 * Media File relationship - one to one
  	 */
 	public function media()
 	{
-		return $this->belongsTo('MediaFile', 'media_file_id')->where('soft_deleted', 0);
+		return $this->hasOne('MediaFile', 'media_file_id')->where('soft_deleted', 0);
 	}
 
 }
