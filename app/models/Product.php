@@ -14,6 +14,27 @@ class Product extends Eloquent {
 	 */
 	protected $table = 'products';
 
+	static $object_type = [	
+		1 => 'user',
+		2 => 'company',
+		3 => 'product',
+		4 => 'page',
+	];
+
+	static $media_type = [	
+		1 => 'image',
+		2 => 'video',
+	];
+
+	static $usage_type = [	
+		1 => 'profile_picture',
+		2 => 'cover',
+		3 => 'content_image',
+		4 => 'attribute_image',
+		5 => 'comment_image',			     			
+	];
+
+
 	/**
 	 * Comment relationship - one to many
 	 */
@@ -23,11 +44,15 @@ class Product extends Eloquent {
 	}
 
 	/**
-	 * Media File relationship (videos) - one to one
-	 */		
-	public function video()
+	 * Media File relationship (cover video) - one to one
+	 */
+	public function coverVideo()
 	{
-		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 3)->where('media_type', 2)->where('soft_deleted', 0);
+		return $this->hasOne('MediaFile', 'object_id')
+					->where('object_type', 3)
+					->where('media_type', 2)
+					->where('usage_type', 2)
+					->where('soft_deleted', 0);
 	}
 
 	/**
@@ -35,7 +60,19 @@ class Product extends Eloquent {
 	 */
 	public function images()
 	{
-		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('media_type', 1)->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Media File relationship (cover image) - one to one
+	 */
+	public function coverImage()
+	{
+		return $this->hasOne('MediaFile', 'object_id')
+					->where('object_type', 3)
+					->where('media_type', 1)
+					->where('usage_type', 2)
+					->where('soft_deleted', 0);
 	}
 
 	/**
