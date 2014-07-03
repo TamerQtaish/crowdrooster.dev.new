@@ -11,6 +11,8 @@ class MediaFile extends Eloquent {
 
 	static $object_type = [	1 => 'user',
 					       	2 => 'company',
+					       	2 => 'c',
+					       	2 => 'company',
 	];
 	
 	static $media_type = [	1 => 'jpg',
@@ -24,10 +26,10 @@ class MediaFile extends Eloquent {
 			     			9 => 'avi'
 			     			7 => 'youtube',
 			     			8 => 'wistia',
-			     			9 => 'vimeo'
+			     			9 => 'vimeo',
 	];
 
-	static $media_usage = [	1 => 'profile picture',
+	static $usage_type = [	1 => 'profile picture',
 							2 => 'cover image',
 			     			3 => 'content image',
 			     			4 => 'attribute image',
@@ -47,7 +49,7 @@ class MediaFile extends Eloquent {
 	 */
 	public function company()
 	{
-		return $this->belongsTo('Company', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->belongsTo('Company', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}
 
 	/**
@@ -55,7 +57,7 @@ class MediaFile extends Eloquent {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
 	}
 
 	/**
@@ -77,9 +79,9 @@ class MediaFile extends Eloquent {
 	/**
 	 * Return the media usage value
  	 */
-	public function getMediaUsage()
+	public function getUsageType()
 	{
-		return self::$media_usage[$this->media_usage];
+		return self::$usage_type[$this->usage_type];
 	}
 
 }
