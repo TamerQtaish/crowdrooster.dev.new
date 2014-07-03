@@ -9,9 +9,20 @@ class AttributeValue extends Eloquent {
 	 */
 	protected $table = 'attribute_values';
 
+	/**
+	 * Product relationship - many to one
+	 */
 	public function attribute()
 	{
-		return $this->belongsTo('Attribute', 'attribute_id', 'id');
+		return $this->belongsTo('Attribute', 'attribute_id');
+	}
+
+	/**
+	 * Media File relationship - many to one
+ 	 */
+	public function media()
+	{
+		return $this->belongsTo('MediaFile', 'media_file_id')->where('soft_deleted', 0);
 	}
 
 }

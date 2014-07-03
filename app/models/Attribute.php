@@ -9,6 +9,9 @@ class Attribute extends Eloquent {
 	 */
 	protected $table = 'attributes';
 
+	/**
+	 * Attribute Values relationship - one to many
+	 */
 	public function values()
 	{
 		return $this->hasMany('AttributeValue', 'attribute_id')->where('soft_deleted', 0);

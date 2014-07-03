@@ -25,4 +25,12 @@ class Product extends Eloquent {
 		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
 
+	/**
+	 * Attributes relationship - one to many
+	 */	
+	public function attributes()
+	{
+		return $this->hasMany('Attribute', 'product_id')->where('object_type', 3)->where('soft_deleted', 0);
+	}
+
 }
