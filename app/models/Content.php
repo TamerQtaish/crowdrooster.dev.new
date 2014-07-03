@@ -9,6 +9,13 @@ class Content extends Eloquent {
 	 */
 	protected $table = 'contents';
 
+	static $object_type = [
+		1 => 'user',
+		2 => 'company',
+		3 => 'product',
+		4 => 'page',
+	];
+
 	static public function createContent($data = array()){
 		// create instance of Content
 		$content = new Content;

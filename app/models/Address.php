@@ -9,21 +9,25 @@ class Address extends Eloquent {
 	 */
 	protected $table = 'addresses';
 
+	static $object_type = [
+		1 => 'user',
+		2 => 'company',
+		3 => 'product',
+		4 => 'page',
+	];
+
+	static $address_type = [
+		1 => 'shipping',
+		2 => 'billing',
+		3 => 'location',
+	];
+
 	/**
 	 * Define the static vars for the class
 	 *
 	 *  @var array
 	 */
-	
-	static $object_type = [1 => 'user',
-			       2 => 'company',
-			       ];
-	
-	static $address_type = [1 => 'shipping',
-				2 => 'billing',
-				3 => 'location',
-				];
-
+		
 	/**
 	 * Company relationship - many to one
 	 */	

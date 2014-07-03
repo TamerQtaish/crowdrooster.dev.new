@@ -8,7 +8,14 @@ class Company extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'companies';
-	
+
+	static $object_type = [
+		1 => 'user',
+		2 => 'company',
+		3 => 'product',
+		4 => 'page',
+	];
+
 	/**
 	 * Access relationship - many to one
 	 */	
