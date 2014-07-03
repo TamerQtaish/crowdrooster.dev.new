@@ -43,36 +43,13 @@ class Product extends Eloquent {
 		return $this->hasMany('Comment', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
 
+        
 	/**
-	 * Media File relationship (cover video) - one to one
-	 */
-	public function coverVideo()
+	 * Media File relationship - one to one
+ 	 */
+	public function media()
 	{
-		return $this->hasOne('MediaFile', 'object_id')
-					->where('object_type', 3)
-					->where('media_type', 2)
-					->where('usage_type', 2)
-					->where('soft_deleted', 0);
-	}
-
-	/**
-	 * Media File relationship (images) - one to many
-	 */
-	public function images()
-	{
-		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('media_type', 1)->where('soft_deleted', 0);
-	}
-
-	/**
-	 * Media File relationship (cover image) - one to one
-	 */
-	public function coverImage()
-	{
-		return $this->hasOne('MediaFile', 'object_id')
-					->where('object_type', 3)
-					->where('media_type', 1)
-					->where('usage_type', 2)
-					->where('soft_deleted', 0);
+		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
 
 	/**
@@ -91,4 +68,27 @@ class Product extends Eloquent {
 		return $this->belongsTo('Company', 'company_id')->where('soft_deleted', 0);		
 	}
 
+	/**
+	 * Return object type Name
+	 */
+	public function getObjectTypeName() {
+		return self::$object_type[$this->object_type];
+	}
+
+	/**
+	 * Return Media type Name
+	 */
+	public function getMediaTypeName() {
+		return self::$media_type[$this->media_type];
+	}
+
+	/**
+	 * Return usage type Name
+	 */
+	public function getUsageTypeName() {
+		return self::$usage_type[$this->usage_type];
+	}
+
+        
+        
 }

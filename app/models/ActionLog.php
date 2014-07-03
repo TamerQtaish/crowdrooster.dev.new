@@ -24,6 +24,14 @@ class ActionLog extends Eloquent {
 		return $this->belongsTo('User', 'user_id');
 	}
 
+	/**
+	 * Return object type Name
+	 */
+	public function getObjectTypeName() 
+	{
+		return self::$object_type[$this->object_type];
+	}	
+	
 	static public function createAction($data = [])
 	{
 		// create instance of ActionLog

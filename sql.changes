@@ -4,7 +4,10 @@ ALTER TABLE links ADD link_text varchar(250);
 
 ALTER TABLE users ADD reset_token varchar(100);
 
-ALTER TABLE `users` CHANGE `remember_token` `remember_token` VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;
+ALTER TABLE `users` CHANGE `remember_token` `remember_token` VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
 
+ALTER TABLE attribute_values DROP media_file_id;
+
+ALTER TABLE shipping_costs ADD product_id int(12) DEFAULT 0;
 
 

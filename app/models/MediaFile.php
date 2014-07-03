@@ -19,6 +19,7 @@ class MediaFile extends Eloquent {
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 	
 	static $media_type = [	

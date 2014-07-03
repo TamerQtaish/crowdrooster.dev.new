@@ -15,25 +15,12 @@ class Content extends Eloquent {
 		3 => 'product',
 		4 => 'page',
 	];
-
-	static public function createContent($data = array()){
-		// create instance of Content
-		$content = new Content;
-
-		// set the content fields
-		$content->object_id = $data['object_id'];
-		$content->object_type = $data['object_type'];
-		$content->content_type = $data['content_type'];
-		$content->content = $data['content'];
-
-		// save the record to the DB
-		$content->save();
-
-		// return the new DB record
-		return $content;
-	}
-
-	// content types - 1 = company content, 2 = page content, 3 = user content & 4 = product content
+	
+	static $content_type = [
+		1 => 'description',
+		2 => 'shipping_info',
+		// etc		
+	];
 
 	/**
 	 * Page relationship - many to one
@@ -65,6 +52,40 @@ class Content extends Eloquent {
 	public function user()
 	{
 		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('content_type', 3)->where('soft_deleted', 0);
-	}	
+	}
+	
+	/**
+	 * Return object type Name
+	 */
+	public function getObjectTypeName() 
+	{
+		return self::$object_type[$this->object_type];
+	}
+	
+	/**
+	 * Return content type Name
+	 */
+	public function getContentTypeName() 
+	{
+		return self::$content_type[$this->content_type];
+	}
+	
+	static public function createContent($data = []){
+		// create instance of Content
+		$content = new Content;
+
+		// set the content fields
+		$content->object_id = $data['object_id'];
+		$content->object_type = $data['object_type'];
+		$content->content_type = $data['content_type'];
+		$content->content = $data['content'];
+
+		// save the record to the DB
+		$content->save();
+
+		// return the new DB record
+		return $content;
+	}
+
 
 }

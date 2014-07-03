@@ -61,7 +61,7 @@ class Link extends Eloquent {
 		return self::$link_type[$this->link_type];
 	}
 		
-	static public function createLink($data = array()){
+	static public function createLink($data = []){
 		// create instance of Link
 		$link = new Link;
 

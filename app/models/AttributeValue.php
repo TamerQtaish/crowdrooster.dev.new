@@ -22,7 +22,8 @@ class AttributeValue extends Eloquent {
  	 */
 	public function media()
 	{
-		return $this->hasOne('MediaFile', 'media_file_id')->where('soft_deleted', 0);
+		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 5)->where('soft_deleted', 0);
 	}
-
+	
+	
 }

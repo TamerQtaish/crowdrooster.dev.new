@@ -56,7 +56,7 @@ class Address extends Eloquent {
 		return self::$address_type[$this->address_type];
 	}
 	
-	static public function createAddress($data = array()){
+	static public function createAddress($data = []){
 		// create instance of Address
 		$address = new Address;
 

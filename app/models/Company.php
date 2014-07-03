@@ -21,7 +21,7 @@ class Company extends Eloquent {
 	 */	
 	public function access() 
 	{
-		return $this->belongsTo('Access', 'object_id');
+		return $this->belongsTo('Access', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}
 
 	/**
@@ -56,4 +56,13 @@ class Company extends Eloquent {
 		return $this->hasMany('Content', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}		
 
+	/**
+	 * Return object type Name
+	 */
+	public function getObjectTypeName() 
+	{
+		return self::$object_type[$this->object_type];
+	}	
+	
+	
 }
