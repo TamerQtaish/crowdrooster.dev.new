@@ -8,9 +8,3 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
-<<<<<<< HEAD
-/app/config/app.php
-/app/config/database.php
-
-=======
->>>>>>> c806396d37f0d1460f609d430cd81c51ee38142e
