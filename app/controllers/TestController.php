@@ -54,8 +54,8 @@ class TestController extends Controller {
             }
             */
             
-            $user = User::find(1);
-            print_r($user->actionLogs);            
+            $user = User::find( Auth::user()->id );
+            print_r($user->actionLogs);
             
 	}
 }
