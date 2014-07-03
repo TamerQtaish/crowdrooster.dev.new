@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://crowdrooster.dev.new/',
+	'url' => 'http://www.crowdrooster-new.local/',
 
 	/*
 	|--------------------------------------------------------------------------

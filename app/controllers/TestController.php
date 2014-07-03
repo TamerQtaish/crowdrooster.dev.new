@@ -53,6 +53,11 @@ class TestController extends Controller {
                 echo $access->getAccessLevelName();
             }
             */
+<<<<<<< HEAD
+            
+            $user = User::find( Auth::user()->id );
+            print_r($user->actionLogs);
+=======
 
 	    /*
 	     // Test user action logs 
@@ -68,6 +73,7 @@ class TestController extends Controller {
 		$message->to('TamerQtaish@gmail.com', 'Tamer Qtaish')->subject('Welcome!');
 	    });	    
 	    
+>>>>>>> FETCH_HEAD
             
 	}
 }

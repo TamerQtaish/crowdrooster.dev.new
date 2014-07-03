@@ -30,7 +30,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * Action Log relationship - one to many
 	 */
 	public function actionLogs() {
-		return $this->hasMany('ActionLog', 'user_id')->where('soft_deleted', 0);
+		return $this->hasMany('ActionLog', 'user_id');
 	}
 	
 	/**
