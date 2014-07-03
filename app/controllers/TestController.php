@@ -53,9 +53,21 @@ class TestController extends Controller {
                 echo $access->getAccessLevelName();
             }
             */
-            
+
+	    /*
+	     // Test user action logs 
             $user = User::find(1);
-            print_r($user->actionLogs);            
+            print_r($user->actionLogs);
+            */
+	    
+	    
+	    $data = ['name'=>'tamer'];
+	    
+	    Mail::send('emails.welcome', $data, function($message)
+	    {
+		$message->to('TamerQtaish@gmail.com', 'Tamer Qtaish')->subject('Welcome!');
+	    });	    
+	    
             
 	}
 }
