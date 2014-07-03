@@ -9,7 +9,6 @@ class ShaunsController extends Controller {
     public function index()
     {
     	echo '<pre>';
-
     }
 
 }

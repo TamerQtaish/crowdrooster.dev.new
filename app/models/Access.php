@@ -15,43 +15,53 @@ class Access extends Eloquent {
 	 *  @var array
 	 */
 	
-	static $object_type = [1 => 'company',
-			       ];
+	static $object_type = [	
+		1 => 'user',
+		2 => 'company',
+		3 => 'product',
+		4 => 'page',
+	];
 		
-	static $access_level = [1 => 'readOnly',
-				2 => 'readAndWrite',
-				3 => 'admin',
-				];	
+	static $access_level = [
+		1 => 'read_only',
+		2 => 'read_and_write',
+		3 => 'admin',
+	];	
 
 	/**
 	 * User relationship - many to one
 	 */	
-	public function user() {
+	public function user() 
+	{
 		return $this->belongsTo('User', 'user_id');
 	}
 
 	/**
 	 * Company relationship - one to one
 	 */
-	public function company() {
+	public function company() 
+	{
 		return $this->hasOne('Company', 'company_id')->where('soft_deleted', 0);
 	}
 	
 	/**
 	 * Return object type Name
 	 */
-	public function getObjectTypeName() {
+	public function getObjectTypeName() 
+	{
 		return self::$object_type[$this->object_type];
 	}
 
 	/**
 	 * Return Access level Name
 	 */
-	public function getAccessLevelName() {
+	public function getAccessLevelName() 
+	{
 		return self::$access_level[$this->access_level];
 	}
 	
-	static public function createAccess($data = array()){
+	static public function createAccess($data = [])
+	{
 		// create instance of Access
 		$access = new Access;
 

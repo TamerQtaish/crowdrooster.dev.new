@@ -27,7 +27,7 @@ class Product extends Eloquent {
 	 */		
 	public function video()
 	{
-		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 3)->where('media_type', 2)->where('soft_deleted', 0);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Product extends Eloquent {
 	 */
 	public function images()
 	{
-		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('object_type', 1)->where('soft_deleted', 0);
 	}
 
 	/**
