@@ -56,7 +56,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public function comments()
 	{
-		return $this->hasMany('Comment', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->hasMany('Comment', 'user_id')->where('soft_deleted', 0);
 	}
 
 	/**
