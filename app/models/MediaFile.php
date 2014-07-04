@@ -2,11 +2,6 @@
 
 class MediaFile extends Eloquent {
 
-	// unsure about media type
-	// should we differenciate between media type which could be image, video or document for example
-	// then create a file extension type to store gif, jpg, mp4, wmv for example
-	// the wording just soudnds strange to me
-
 	/**
 	 * The database table used by the model.
 	 *

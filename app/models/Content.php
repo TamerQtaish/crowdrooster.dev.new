@@ -20,8 +20,6 @@ class Content extends Eloquent {
 	static $content_type = [
 		1 => 'description',
 		2 => 'shipping_info',
-		// etc		
-		/**** LETS DEFINE THESE ****/
 	];
 
 	/**

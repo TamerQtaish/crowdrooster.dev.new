@@ -54,7 +54,7 @@ class Company extends Eloquent {
 	 */
 	public function contents()
 	{
-		return $this->hasMany('Content', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+		return $this->hasMany('Content', 'object_id')->where('object_type', 2)->where('content_type', 1)->where('soft_deleted', 0);
 	}		
 
 	/**
