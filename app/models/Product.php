@@ -43,7 +43,7 @@ class Product extends Eloquent {
 	/**
 	 * Media File relationship - one to many
  	 */
-	public function media()
+	public function mediaFile()
 	{
 		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}

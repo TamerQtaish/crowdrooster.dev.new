@@ -20,7 +20,7 @@ class AttributeValue extends Eloquent {
 	/**
 	 * Media File relationship - one to many
  	 */
-	public function media()
+	public function mediaFile()
 	{
 		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 5)->where('soft_deleted', 0);
 	}

@@ -12,7 +12,7 @@ class ShoppingCart extends Eloquent {
 	/**
 	 * Shopping Cart Attributes relationship - one to many
 	 */
-	public function items()
+	public function shoppingCartAttributes()
 	{
 		return $this->hasMany('ShoppingCartAttribute', 'shopping_cart_id')->where('soft_deleted', 0);
 	}
