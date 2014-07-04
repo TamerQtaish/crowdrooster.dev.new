@@ -1,6 +1,12 @@
 <?php
 
 class CompanyController extends BaseController{
+
+
+	public function admin(){
+		echo 'You are a company user';
+	}
+	
 	
 	public function getRegister(){
 

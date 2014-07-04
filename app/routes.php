@@ -25,7 +25,6 @@ View::composer('index', function($view) {
 
 Route::any('/maintenance', 'HomeController@maintenance');
 
-
 Route::get('/', 'HomeController@index');
 
 // Testing section for dev
@@ -55,3 +54,14 @@ Route::post('/company/register', 'CompanyController@postRegister');
 Route::get('/content/view', 'ContentController@getContent');
 Route::post('/content/create', 'ContentController@postContent');
 Route::get('/content/test', 'ContentController@test');
+
+// Admin restricted Pages come in here
+Route::group(array('before' => 'auth|admin'), function() {
+	Route::any('/admin', 'AdminController@index');
+});
+
+// company restricted Pages come in here
+Route::group(array('before' => 'auth|company'), function() {
+	Route::any('/company/admin', 'CompanyController@admin');
+});
+
