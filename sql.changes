@@ -10,3 +10,4 @@ ALTER TABLE attribute_values DROP media_file_id;
 
 ALTER TABLE shipping_costs ADD product_id int(12) DEFAULT 0;
 
+ALTER TABLE comments ADD company_id int(12) DEFAULT 0;

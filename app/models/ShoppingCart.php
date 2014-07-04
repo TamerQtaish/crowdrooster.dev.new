@@ -16,5 +16,5 @@ class ShoppingCart extends Eloquent {
 	{
 		return $this->hasMany('ShoppingCartAttribute', 'shopping_cart_id')->where('soft_deleted', 0);
 	}
-	
+
 }

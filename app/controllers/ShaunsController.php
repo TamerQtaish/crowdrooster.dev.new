@@ -34,6 +34,11 @@ class ShaunsController extends Controller {
     	print_r($obj);
 */
     	
+        $obj = Product::find(1);
+        $obj = $obj->shoppingCartAttribute;
+
+        print_r($obj);
+
     }
 
 }
