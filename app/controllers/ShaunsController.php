@@ -22,22 +22,53 @@ class ShaunsController extends Controller {
     	print_r($obj);
 */
 
-/*	   	$obj = MediaFile::find(4);
+/*	   	$obj = MediaFile::find(1);
     	$obj = $obj->user;
 
     	print_r($obj);
 */
 
-/*	   	$obj = User::find(6);
+/*	   	$obj = User::find(1);
     	$obj = $obj->comments;
 
     	print_r($obj);
 */
     	
-        $obj = Product::find(1);
+/*      $obj = ShippingCost::find(1);
+        $obj = $obj->product;
+
+        print_r($obj);
+*/
+
+/*      $obj = Product::find(1);
+        $obj = $obj->shippingCost;
+
+        print_r($obj);
+*/
+
+/*      $obj = Product::find(1);
         $obj = $obj->shoppingCartAttribute;
 
         print_r($obj);
+*/
+
+/*      $obj = ShoppingCartAttribute::find(1);
+        $obj = $obj->product;
+
+        print_r($obj);
+*/
+
+/*      $obj = ShoppingCartAttribute::find(1);
+        $obj = $obj->attributeValue;
+
+        print_r($obj);
+*/
+
+/*      $obj = AttributeValue::find(1);
+        $obj = $obj->shoppingCartAttribute;
+
+        print_r($obj);
+*/
 
     }
 

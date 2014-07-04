@@ -9,6 +9,12 @@ class Address extends Eloquent {
 	 */
 	protected $table = 'addresses';
 
+	/**
+	 * Define the static vars for the class
+	 *
+	 *  @var array
+	 */
+
 	static $object_type = [	
 		1 => 'user',
 		2 => 'company',
@@ -22,12 +28,6 @@ class Address extends Eloquent {
 		2 => 'billing',
 		3 => 'location',
 	];
-
-	/**
-	 * Define the static vars for the class
-	 *
-	 *  @var array
-	 */
 		
 	/**
 	 * Company relationship - many to one

@@ -9,7 +9,6 @@ class ActionLog extends Eloquent {
 	 */
 	protected $table = 'action_logs';
 
-
 	/**
 	 * User relationship - many to one
 	 */	
