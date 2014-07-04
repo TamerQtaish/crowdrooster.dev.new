@@ -9,14 +9,6 @@ class AttributeValue extends Eloquent {
 	 */
 	protected $table = 'attribute_values';
 
-	static $object_type = [	
-		1 => 'user',
-		2 => 'company',
-		3 => 'product',
-		4 => 'page',
-		5 => 'attribute',
-	];
-	
 	/**
 	 * Product relationship - many to one
 	 */
@@ -32,13 +24,5 @@ class AttributeValue extends Eloquent {
 	{
 		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 5)->where('soft_deleted', 0);
 	}
-
-	/**
-	 * Return object type Name
-	 */
-	public function getObjectTypeName() 
-	{
-		return self::$object_type[$this->object_type];
-	}	
 	
 }

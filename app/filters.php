@@ -52,6 +52,20 @@ Route::filter('company', function()
 	}
 });
 
+Route::filter('maintenanceOn', function()
+{
+	if(Config::get('app.maintenance')) {	
+		return Redirect::to('/maintenance');
+	}
+});
+
+Route::filter('maintenanceOff', function()
+{
+	if(!Config::get('app.maintenance')) {	
+		return Redirect::to('/');
+	}
+});
+
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();

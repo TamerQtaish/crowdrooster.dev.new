@@ -20,9 +20,9 @@ class Industry extends Eloquent {
 	/**
 	 * Company relationship - one to many
 	 */	
-	public function companies()
+	public function company()
 	{
-		return $this->hasMany('Company', 'industry_id')->where('soft_deleted', 0);
+		return $this->hasOne('Company', 'industry_id')->where('soft_deleted', 0);
 	}
 
 }

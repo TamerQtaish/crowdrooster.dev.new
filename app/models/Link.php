@@ -30,8 +30,8 @@ class Link extends Eloquent {
 		4 => 'google+',
 		5 => 'pinterest',
 		6 => 'youtube',
-		7 => 'pressLink',
-		8 => 'homePage',
+		7 => 'press_link',
+		8 => 'home_page',
 	];
 	
 	/**

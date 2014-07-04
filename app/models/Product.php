@@ -27,9 +27,9 @@ class Product extends Eloquent {
 	];
 
 	static $currency_id = [	
-		1 => 'usd',
-		2 => 'gbp',
-		3 => 'eur',
+		1 => 'USD',
+		2 => 'GBP',
+		3 => 'EUR',
 	];
 
 	/**
