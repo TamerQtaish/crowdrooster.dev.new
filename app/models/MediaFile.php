@@ -32,7 +32,7 @@ class MediaFile extends Eloquent {
 		2 => 'cover_image',
 		3 => 'content_image',
 		4 => 'attribute_image',
-		5 => 'comment_image',			     			
+		5 => 'comment_image',     			
 	];
 
 	/**

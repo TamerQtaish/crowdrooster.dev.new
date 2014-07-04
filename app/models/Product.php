@@ -19,6 +19,7 @@ class Product extends Eloquent {
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 
 	static $media_type = [	
@@ -78,21 +79,24 @@ class Product extends Eloquent {
 	/**
 	 * Return object type Name
 	 */
-	public function getObjectTypeName() {
+	public function getObjectTypeName() 
+	{
 		return self::$object_type[$this->object_type];
 	}
 
 	/**
 	 * Return Media type Name
 	 */
-	public function getMediaTypeName() {
+	public function getMediaTypeName() 
+	{
 		return self::$media_type[$this->media_type];
 	}
 
 	/**
 	 * Return usage type Name
 	 */
-	public function getUsageTypeName() {
+	public function getUsageTypeName() 
+	{
 		return self::$usage_type[$this->usage_type];
 	}
 

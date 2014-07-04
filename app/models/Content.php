@@ -9,17 +9,19 @@ class Content extends Eloquent {
 	 */
 	protected $table = 'contents';
 
-	static $object_type = [
+	static $object_type = [	
 		1 => 'user',
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 	
 	static $content_type = [
 		1 => 'description',
 		2 => 'shipping_info',
 		// etc		
+		/**** LETS DEFINE THESE ****/
 	];
 
 	/**
@@ -70,7 +72,8 @@ class Content extends Eloquent {
 		return self::$content_type[$this->content_type];
 	}
 	
-	static public function createContent($data = []){
+	static public function createContent($data = [])
+	{
 		// create instance of Content
 		$content = new Content;
 
