@@ -435,5 +435,17 @@ CREATE TABLE `failed_jobs` (
 
 ##########################################################################################################
 
+CREATE TABLE pages
+(
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
+  `page_name` varchar(60) DEFAULT 0,
+  `soft_deleted` varchar(30),
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+##########################################################################################################
+
 
 
