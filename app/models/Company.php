@@ -9,14 +9,6 @@ class Company extends Eloquent {
 	 */
 	protected $table = 'companies';
 
-	static $object_type = [	
-		1 => 'user',
-		2 => 'company',
-		3 => 'product',
-		4 => 'page',
-		5 => 'attribute',
-	];
-
 	static $company_status = [	
 		1 => 'inactive',
 		2 => 'active',
@@ -76,14 +68,6 @@ class Company extends Eloquent {
 	{
 		return $this->hasMany('Comment', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}		
-
-	/**
-	 * Return object type Name
-	 */
-	public function getObjectTypeName() 
-	{
-		return self::$object_type[$this->object_type];
-	}
 	
 	/**
 	 * Return company status Name

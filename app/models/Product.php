@@ -9,14 +9,6 @@ class Product extends Eloquent {
 	 */
 	protected $table = 'products';
 
-	static $object_type = [	
-		1 => 'user',
-		2 => 'company',
-		3 => 'product',
-		4 => 'page',
-		5 => 'attribute',
-	];
-
 	static $product_type = [
 		1 => 'pre_order',
 		2 => 'shop_ready',
@@ -79,31 +71,37 @@ class Product extends Eloquent {
 	{
 		return $this->hasMany('Content', 'object_id')->where('object_type', 3)->where('content_type', 1)->where('soft_deleted', 0);
 	}
-
+	
 	/**
-	 * Return object type Name
+	 * Return product type Name
 	 */
-	public function getObjectTypeName() 
+	public function getProductTypeName() 
 	{
-		return self::$object_type[$this->object_type];
+		return self::$product_type[$this->product_type];
+	}	
+	
+	/**
+	 * Return product featured Name
+	 */
+	public function getProductFeaturedName() 
+	{
+		return self::$product_featured[$this->product_featured];
 	}
 
 	/**
-	 * Return Media type Name
+	 * Return product status Name
 	 */
-	public function getMediaTypeName() 
+	public function getProductStatusName() 
 	{
-		return self::$media_type[$this->media_type];
+		return self::$product_status[$this->product_status];
 	}
 
 	/**
-	 * Return usage type Name
+	 * Return currency type Name
 	 */
-	public function getUsageTypeName() 
+	public function getProductCurrencyName() 
 	{
-		return self::$usage_type[$this->usage_type];
+		return self::$currency_id[$this->currency_id];
 	}
-
-        
-        
+       
 }
