@@ -15,6 +15,8 @@ return array(
 
 	'debug' => true,
 
+	'maintenance' => false,
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application URL

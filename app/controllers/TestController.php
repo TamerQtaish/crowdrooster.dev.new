@@ -8,7 +8,7 @@ class TestController extends Controller {
      */
     protected function index()
     {
-            echo '<pre>';            
+          //  echo '<pre>';            
 
             /*
             // Links test
@@ -54,8 +54,8 @@ class TestController extends Controller {
             }
             */
             
-            $user = User::find( Auth::user()->id );
-            print_r($user->actionLogs);
+        //    $user = User::find( Auth::user()->id );
+        //    print_r($user->actionLogs);
 
 	    /*
 	     // Test user action logs 
@@ -64,12 +64,12 @@ class TestController extends Controller {
             */
 	    
 	    
-	    $data = ['name'=>'tamer'];
+	/*    $data = ['name'=>'tamer'];
 	    
 	    Mail::queue('emails.welcome', $data, function($message)
 	    {
 		$message->to('TamerQtaish@gmail.com', 'Tamer Qtaish')->subject('Welcome!');
 	    });	    
-	    
+	*/  
     }
 }

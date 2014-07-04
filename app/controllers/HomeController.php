@@ -24,4 +24,8 @@ class HomeController extends BaseController {
 			
 		return $view;
 	}
+	
+	public function maintenance() {
+		return Response::view('errors.maintenance', array(), 200);
+	}
 }

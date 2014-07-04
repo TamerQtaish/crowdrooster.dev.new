@@ -10,12 +10,21 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
+// Check if the site is under maintenance or not, config it from the config/app.php file.
+if(Config::get('app.maintenance')) {
+	Redirect::to('/maintenance');
+}
+
 View::composer('index', function($view) {
 
 	if (Session::get('notification') != '') {
 		$view->nest('viewNotification', 'shared.notification', Session::get('notification'));
 	}
 });
+
+Route::any('/maintenance', 'HomeController@maintenance');
+
 
 Route::get('/', 'HomeController@index');
 
@@ -37,8 +46,6 @@ Route::post('/user/reset_password/{token}', 'UserController@postResetPassword');
 
 Route::get('/user/forgot_password', 'UserController@getForgotPassword');
 Route::post('/user/forgot_password', 'UserController@postForgotPassword');
-
-
 
 // Company Routes
 Route::get('/company/register', 'CompanyController@getRegister');
