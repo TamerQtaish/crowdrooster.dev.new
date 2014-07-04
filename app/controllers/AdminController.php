@@ -77,8 +77,6 @@ class AdminController extends BaseController {
 										    ));
 			    }
 			}
-			
 		}
 	}	
-	
 }
