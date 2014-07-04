@@ -42,14 +42,13 @@ class Product extends Eloquent {
 	{
 		return $this->hasMany('Comment', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
-
         
 	/**
-	 * Media File relationship - one to one
+	 * Media File relationship - one to many
  	 */
 	public function media()
 	{
-		return $this->hasOne('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->hasMany('MediaFile', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
 	}
 
 	/**
@@ -57,7 +56,7 @@ class Product extends Eloquent {
 	 */	
 	public function attributes()
 	{
-		return $this->hasMany('Attribute', 'product_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->hasMany('Attribute', 'product_id')->where('soft_deleted', 0);
 	}
 
 	/**
@@ -65,7 +64,15 @@ class Product extends Eloquent {
 	 */	
 	public function company()
 	{
-		return $this->belongsTo('Company', 'company_id')->where('soft_deleted', 0);		
+		return $this->belongsTo('Company', 'company_id')->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Content relationship - one to many
+	 */	
+	public function contents()
+	{
+		return $this->hasMany('Content', 'object_id')->where('object_type', 3)->where('content_type', 1)->where('soft_deleted', 0);
 	}
 
 	/**

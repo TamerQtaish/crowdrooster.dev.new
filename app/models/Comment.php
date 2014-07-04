@@ -14,6 +14,7 @@ class Comment extends Eloquent {
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 
 	/**
@@ -39,5 +40,13 @@ class Comment extends Eloquent {
 	{
 		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
 	}	
+
+	/**
+	 * Return object type Name
+	 */
+	public function getObjectTypeName() 
+	{
+		return self::$object_type[$this->object_type];
+	}
 
 }

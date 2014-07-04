@@ -36,27 +36,35 @@ class MediaFile extends Eloquent {
 	];
 
 	/**
-	 * Product relationship - many to one
+	 * Product relationship - one to many
 	 */
 	public function product()
 	{
-		return $this->belongsTo('Product', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->belongsTo('Product', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
-	 * Company relationship - many to one
+	 * Company relationship - one to many
 	 */
 	public function company()
 	{
-		return $this->belongsTo('Company', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
-	 * User relationship - many to one
+	 * User relationship - one to many
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Attrbiute Value relationship - one to one
+	 */
+	public function attributeValue()
+	{
+		return $this->hasOne('AttributeValue', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**

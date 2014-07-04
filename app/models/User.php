@@ -17,6 +17,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 
 	/**
@@ -29,28 +30,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	/**
 	 * Link relationship - one to many
 	 */
-	public function links() {
+	public function links() 
+	{
 		return $this->hasMany('Link', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
 	}
 
 	/**
 	 * Action Log relationship - one to many
 	 */
-	public function actionLogs() {
+	public function actionLogs() 
+	{
 		return $this->hasMany('ActionLog', 'user_id');
 	}
 	
 	/**
 	 * Address relationship - one to many
 	 */
-	public function addresses() {
+	public function addresses() 
+	{
 		return $this->hasMany('Address', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
 	}
 	
 	/**
 	 * Access relationship - one to many
 	 */
-	public function access() {
+	public function access() 
+	{
 		return $this->hasMany('Access', 'user_id')->where('soft_deleted', 0);
 	}
 	

@@ -33,7 +33,7 @@ class Access extends Eloquent {
 	 */	
 	public function user() 
 	{
-		return $this->belongsTo('User', 'user_id');
+		return $this->belongsTo('User', 'user_id')->where('soft_deleted', 0);
 	}
 
 	/**
@@ -41,7 +41,7 @@ class Access extends Eloquent {
 	 */
 	public function company() 
 	{
-		return $this->hasOne('Company', 'company_id')->where('soft_deleted', 0);
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}
 	
 	/**

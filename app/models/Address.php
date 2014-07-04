@@ -31,32 +31,37 @@ class Address extends Eloquent {
 	/**
 	 * Company relationship - many to one
 	 */	
-	public function company() {
-		return $this->belongsTo('Company', 'object_id')->where('object_type', 2);
+	public function company() 
+	{
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}
 		
 	/**
 	 * User relationship - many to one
 	 */	
-	public function user() {
-		return $this->belongsTo('User', 'object_id')->where('object_type', 1);
+	public function user() 
+	{
+		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
 	 * Return object type Name
 	 */
-	public function getObjectTypeName() {
+	public function getObjectTypeName() 
+	{
 		return self::$object_type[$this->object_type];
 	}
 
 	/**
 	 * Return address type Name
 	 */
-	public function getAddressTypeName() {
+	public function getAddressTypeName() 
+	{
 		return self::$address_type[$this->address_type];
 	}
 	
-	static public function createAddress($data = []){
+	static public function createAddress($data = [])
+	{
 		// create instance of Address
 		$address = new Address;
 
