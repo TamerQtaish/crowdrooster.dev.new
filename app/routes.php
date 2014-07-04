@@ -60,8 +60,6 @@ Route::group(array('before' => 'maintenanceOn'), function() {
 		Route::any('admin/languages/{language}', 'AdminController@languages');
 		Route::any('admin/languages/{language}/{file}', 'AdminController@languages');
 		Route::any('admin/languages/{language}/{file}/{action}', 'AdminController@languages');
-
-		
 	});
 	
 	// company restricted Pages come in here
