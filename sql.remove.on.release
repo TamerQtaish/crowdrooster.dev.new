@@ -438,7 +438,7 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE pages
 (
   `id` int(12) unsigned NOT NULL AUTO_INCREMENT ,
-  `page_name` varchar(60) DEFAULT 0,
+  `page_name` varchar(60) DEFAULT NULL,
   `soft_deleted` varchar(30),
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,

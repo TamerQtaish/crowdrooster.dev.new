@@ -56,6 +56,12 @@ Route::group(array('before' => 'maintenanceOn'), function() {
 	// Admin restricted Pages come in here
 	Route::group(array('before' => 'auth|admin'), function() {
 		Route::any('/admin', 'AdminController@index');
+		Route::any('admin/languages', 'AdminController@languages');
+		Route::any('admin/languages/{language}', 'AdminController@languages');
+		Route::any('admin/languages/{language}/{file}', 'AdminController@languages');
+		Route::any('admin/languages/{language}/{file}/{action}', 'AdminController@languages');
+
+		
 	});
 	
 	// company restricted Pages come in here

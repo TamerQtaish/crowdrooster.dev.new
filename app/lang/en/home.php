@@ -1,7 +1,6 @@
-<?php
-return array(
-    'index' => array(
-            'title'     => 'Home Page',
-        ),
-
+<?php return array (
+  'index' => 
+  array (
+    'title' => 'Home Page',
+  ),
 );

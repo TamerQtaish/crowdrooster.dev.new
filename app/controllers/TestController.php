@@ -70,6 +70,9 @@ class TestController extends Controller {
 	    {
 		$message->to('TamerQtaish@gmail.com', 'Tamer Qtaish')->subject('Welcome!');
 	    });	    
-	*/  
+	*/
+	
+	
+	print_r(Language::getAvailableLanguages());
     }
 }
