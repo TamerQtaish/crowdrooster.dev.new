@@ -26,7 +26,7 @@ class AttributeValue extends Eloquent {
 	}
 
 	/**
-	 * Media File relationship - one to one
+	 * Media File relationship - one to many
  	 */
 	public function media()
 	{

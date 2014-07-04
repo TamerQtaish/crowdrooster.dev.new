@@ -64,7 +64,7 @@ class MediaFile extends Eloquent {
 	 */
 	public function attributeValue()
 	{
-		return $this->hasOne('AttributeValue', 'object_id')->where('soft_deleted', 0);
+		return $this->belongsTo('AttributeValue', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
