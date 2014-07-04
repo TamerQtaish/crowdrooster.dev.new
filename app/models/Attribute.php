@@ -17,4 +17,12 @@ class Attribute extends Eloquent {
 		return $this->hasMany('AttributeValue', 'attribute_id')->where('soft_deleted', 0);
 	}
 
+	/**
+	 * Product relationship - many to one
+	 */
+	public function product()
+	{
+		return $this->belongsTo('Attribute', 'product_id')->where('soft_deleted', 0);
+	}
+
 }

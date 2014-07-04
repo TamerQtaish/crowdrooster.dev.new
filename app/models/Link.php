@@ -15,11 +15,12 @@ class Link extends Eloquent {
 	 *  @var array
 	 */
 	
-	static $object_type = [
+	static $object_type = [	
 		1 => 'user',
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 	
 	static $link_type = [	
@@ -36,32 +37,37 @@ class Link extends Eloquent {
 	/**
 	 * Company relationship - many to one
 	 */	
-	public function company() {
+	public function company() 
+	{
 		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}
 		
 	/**
 	 * User relationship - many to one
 	 */	
-	public function user() {
+	public function user() 
+	{
 		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
 	 * Return object type Name
 	 */
-	public function getObjectTypeName() {
+	public function getObjectTypeName() 
+	{
 		return self::$object_type[$this->object_type];
 	}
 
 	/**
 	 * Return link type Name
 	 */
-	public function getLinkTypeName() {
+	public function getLinkTypeName() 
+	{
 		return self::$link_type[$this->link_type];
 	}
 		
-	static public function createLink($data = []){
+	static public function createLink($data = [])
+	{
 		// create instance of Link
 		$link = new Link;
 

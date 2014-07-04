@@ -17,4 +17,12 @@ class IndustryCategory extends Eloquent {
 		return $this->belongsTo('Industry', 'industry_id')->where('soft_deleted', 0);
 	}
 
+	/**
+	 * Company relationship - one to many
+	 */	
+	public function company()
+	{
+		return $this->hasOne('Company', 'industry_category_id')->where('soft_deleted', 0);
+	}
+
 }

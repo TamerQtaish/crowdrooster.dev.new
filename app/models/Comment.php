@@ -14,6 +14,7 @@ class Comment extends Eloquent {
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 
 	/**
@@ -21,7 +22,7 @@ class Comment extends Eloquent {
 	 */
 	public function product()
 	{
-		return $this->belongsTo('Product', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->belongsTo('Product', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
@@ -29,7 +30,7 @@ class Comment extends Eloquent {
 	 */
 	public function company()
 	{
-		return $this->belongsTo('Company', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}	
 
 	/**
@@ -37,7 +38,15 @@ class Comment extends Eloquent {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
 	}	
+
+	/**
+	 * Return object type Name
+	 */
+	public function getObjectTypeName() 
+	{
+		return self::$object_type[$this->object_type];
+	}
 
 }

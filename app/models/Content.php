@@ -9,17 +9,17 @@ class Content extends Eloquent {
 	 */
 	protected $table = 'contents';
 
-	static $object_type = [
+	static $object_type = [	
 		1 => 'user',
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 	
 	static $content_type = [
 		1 => 'description',
 		2 => 'shipping_info',
-		// etc		
 	];
 
 	/**
@@ -27,7 +27,7 @@ class Content extends Eloquent {
 	 */
 	public function page()
 	{
-		return $this->belongsTo('Page', 'object_id')->where('object_type', 4)->where('content_type', 2)->where('soft_deleted', 0);
+		return $this->belongsTo('Page', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Content extends Eloquent {
 	 */
 	public function product()
 	{
-		return $this->belongsTo('Product', 'object_id')->where('object_type', 3)->where('content_type', 4)->where('soft_deleted', 0);
+		return $this->belongsTo('Product', 'object_id')->where('soft_deleted', 0);
 	}	
 
 	/**
@@ -43,15 +43,15 @@ class Content extends Eloquent {
 	 */
 	public function company()
 	{
-		return $this->belongsTo('Company', 'object_id')->where('object_type', 2)->where('content_type', 1)->where('soft_deleted', 0);
-	}	
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
+	}
 
 	/**
 	 * User relationship - many to one
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('content_type', 3)->where('soft_deleted', 0);
+		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
 	}
 	
 	/**
@@ -70,7 +70,8 @@ class Content extends Eloquent {
 		return self::$content_type[$this->content_type];
 	}
 	
-	static public function createContent($data = []){
+	static public function createContent($data = [])
+	{
 		// create instance of Content
 		$content = new Content;
 

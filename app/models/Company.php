@@ -9,11 +9,12 @@ class Company extends Eloquent {
 	 */
 	protected $table = 'companies';
 
-	static $object_type = [
+	static $object_type = [	
 		1 => 'user',
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 
 	/**
@@ -21,7 +22,7 @@ class Company extends Eloquent {
 	 */	
 	public function access() 
 	{
-		return $this->belongsTo('Access', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+		return $this->hasMany('Access', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}
 
 	/**
@@ -53,7 +54,15 @@ class Company extends Eloquent {
 	 */
 	public function contents()
 	{
-		return $this->hasMany('Content', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+		return $this->hasMany('Content', 'object_id')->where('object_type', 2)->where('content_type', 1)->where('soft_deleted', 0);
+	}		
+
+	/**
+	 * Comment relationship - one to many
+	 */
+	public function comments()
+	{
+		return $this->hasMany('Comment', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
 	}		
 
 	/**

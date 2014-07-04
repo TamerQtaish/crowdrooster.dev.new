@@ -14,6 +14,7 @@ class ActionLog extends Eloquent {
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 
 	/**

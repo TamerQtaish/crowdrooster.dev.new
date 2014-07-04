@@ -2,11 +2,6 @@
 
 class MediaFile extends Eloquent {
 
-	// unsure about media type
-	// should we differenciate between media type which could be image, video or document for example
-	// then create a file extension type to store gif, jpg, mp4, wmv for example
-	// the wording just soudnds strange to me
-
 	/**
 	 * The database table used by the model.
 	 *
@@ -32,31 +27,39 @@ class MediaFile extends Eloquent {
 		2 => 'cover_image',
 		3 => 'content_image',
 		4 => 'attribute_image',
-		5 => 'comment_image',			     			
+		5 => 'comment_image',     			
 	];
 
 	/**
-	 * Product relationship - many to one
+	 * Product relationship - one to many
 	 */
 	public function product()
 	{
-		return $this->belongsTo('Product', 'object_id')->where('object_type', 3)->where('soft_deleted', 0);
+		return $this->belongsTo('Product', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
-	 * Company relationship - many to one
+	 * Company relationship - one to many
 	 */
 	public function company()
 	{
-		return $this->belongsTo('Company', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**
-	 * User relationship - many to one
+	 * User relationship - one to many
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Attrbiute Value relationship - one to one
+	 */
+	public function attributeValue()
+	{
+		return $this->belongsTo('AttributeValue', 'object_id')->where('soft_deleted', 0);
 	}
 
 	/**

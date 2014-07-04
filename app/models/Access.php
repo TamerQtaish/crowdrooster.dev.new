@@ -20,6 +20,7 @@ class Access extends Eloquent {
 		2 => 'company',
 		3 => 'product',
 		4 => 'page',
+		5 => 'attribute',
 	];
 		
 	static $access_level = [
@@ -33,7 +34,7 @@ class Access extends Eloquent {
 	 */	
 	public function user() 
 	{
-		return $this->belongsTo('User', 'user_id');
+		return $this->belongsTo('User', 'user_id')->where('soft_deleted', 0);
 	}
 
 	/**
@@ -41,7 +42,7 @@ class Access extends Eloquent {
 	 */
 	public function company() 
 	{
-		return $this->hasOne('Company', 'company_id')->where('soft_deleted', 0);
+		return $this->belongsTo('Company', 'object_id')->where('soft_deleted', 0);
 	}
 	
 	/**
