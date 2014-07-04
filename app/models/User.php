@@ -58,6 +58,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->hasMany('Access', 'user_id')->where('soft_deleted', 0);
 	}
+
+	/**
+	 * Comment relationship - one to many
+	 */
+	public function comments()
+	{
+		return $this->hasMany('Comment', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+	}		
 	
 	/**
 	 * Get the unique identifier for the user.

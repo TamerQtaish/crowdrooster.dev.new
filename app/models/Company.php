@@ -57,6 +57,14 @@ class Company extends Eloquent {
 	}		
 
 	/**
+	 * Comment relationship - one to many
+	 */
+	public function comments()
+	{
+		return $this->hasMany('Comment', 'object_id')->where('object_type', 2)->where('soft_deleted', 0);
+	}		
+
+	/**
 	 * Return object type Name
 	 */
 	public function getObjectTypeName() 
