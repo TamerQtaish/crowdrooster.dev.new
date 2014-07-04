@@ -71,6 +71,22 @@ class Product extends Eloquent {
 	{
 		return $this->hasMany('Content', 'object_id')->where('object_type', 3)->where('content_type', 1)->where('soft_deleted', 0);
 	}
+
+	/**
+	 * Shipping Cost relationship - one to many
+	 */
+	public function shippingCost()
+	{
+		return $this->hasMany('ShippingCost', 'product_id')->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Shopping Cart Attribute relationship - many to one
+	 */
+	public function shoppingCartAttribute()
+	{
+		return $this->belongsTo('ShoppingCartAttribute', 'product_id')->where('soft_deleted', 0);
+	}
 	
 	/**
 	 * Return product type Name
@@ -78,7 +94,7 @@ class Product extends Eloquent {
 	public function getProductTypeName() 
 	{
 		return self::$product_type[$this->product_type];
-	}	
+	}
 	
 	/**
 	 * Return product featured Name

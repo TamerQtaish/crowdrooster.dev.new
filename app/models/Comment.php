@@ -9,14 +9,6 @@ class Comment extends Eloquent {
 	 */
 	protected $table = 'comments';
 
-	static $object_type = [	
-		1 => 'user',
-		2 => 'company',
-		3 => 'product',
-		4 => 'page',
-		5 => 'attribute',
-	];
-
 	/**
 	 * Product relationship - many to one
 	 */
@@ -38,15 +30,15 @@ class Comment extends Eloquent {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'object_id')->where('soft_deleted', 0);
+		return $this->belongsTo('User', 'user_id')->where('soft_deleted', 0);
 	}	
 
 	/**
-	 * Return object type Name
+	 * Media File relationship - many to one
 	 */
-	public function getObjectTypeName() 
+	public function mediaFile()
 	{
-		return self::$object_type[$this->object_type];
+		return $this->hasMany('MediaFile', 'object_id')->where('usage_type', 5)->where('soft_deleted', 0);
 	}
 
 }

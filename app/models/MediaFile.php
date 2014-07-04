@@ -63,6 +63,14 @@ class MediaFile extends Eloquent {
 	}
 
 	/**
+	 * Attrbiute Value relationship - one to one
+	 */
+	public function comment()
+	{
+		return $this->belongsTo('Comment', 'object_id')->where('soft_deleted', 0);
+	}
+
+	/**
 	 * Return the object type value
  	 */
 	public function getObjectType()

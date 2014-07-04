@@ -12,7 +12,7 @@ class Page extends Eloquent{
 	/**
 	 * Content relationship - one to one
 	 */
-	public function contents()
+	public function content()
 	{
 		return $this->hasOne('Content', 'object_id')->where('object_type', 4)->where('content_type', 1)->where('soft_deleted', 0);
 	}
