@@ -17,19 +17,28 @@ class Product extends Eloquent {
 		5 => 'attribute',
 	];
 
-	static $media_type = [	
-		1 => 'image',
-		2 => 'video',
+	static $product_type = [
+		1 => 'pre_order',
+		2 => 'shop_ready',
 	];
 
-	static $usage_type = [	
-		1 => 'profile_picture',
-		2 => 'cover',
-		3 => 'content_image',
-		4 => 'attribute_image',
-		5 => 'comment_image',			     			
+	static $product_featured = [
+		1 => 'not_featured',
+		2 => 'featured',
 	];
 
+	static $product_status = [	
+		1 => 'draft',
+		2 => 'pending',
+		3 => 'rejected',
+		4 => 'approved',
+	];
+
+	static $currency_id = [	
+		1 => 'usd',
+		2 => 'gbp',
+		3 => 'eur',
+	];
 
 	/**
 	 * Comment relationship - one to many

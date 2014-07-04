@@ -17,6 +17,18 @@ class Company extends Eloquent {
 		5 => 'attribute',
 	];
 
+	static $company_status = [	
+		1 => 'inactive',
+		2 => 'active',
+		3 => 'partner',
+	];
+
+	static $currency_id = [	
+		1 => 'usd',
+		2 => 'gbp',
+		3 => 'eur',
+	];
+
 	/**
 	 * Access relationship - many to one
 	 */	
@@ -71,7 +83,22 @@ class Company extends Eloquent {
 	public function getObjectTypeName() 
 	{
 		return self::$object_type[$this->object_type];
-	}	
+	}
 	
-	
+	/**
+	 * Return company status Name
+	 */
+	public function getCompanyStatusName() 
+	{
+		return self::$company_status[$this->company_status];
+	}
+
+	/**
+	 * Return currency type Name
+	 */
+	public function getCompanyCurrencyName() 
+	{
+		return self::$currency_id[$this->currency_id];
+	}
+
 }
