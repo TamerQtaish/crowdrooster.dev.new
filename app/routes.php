@@ -19,9 +19,22 @@ View::composer('index', function($view) {
 
 Route::get('/', 'HomeController@index');
 
+// Testing section for dev
+Route::get('/test', 'TestController@index');
+
+
+// User Routes
 Route::get('/user/register', 'UserController@getRegister');
 Route::post('/user/register', 'UserController@postRegister');
-
 Route::get('/user/login', 'UserController@getLogin');
 Route::post('/user/login', 'UserController@postLogin');
 Route::any('/user/logout', 'UserController@logout');
+
+// Company Routes
+Route::get('/company/register', 'CompanyController@getRegister');
+Route::post('/company/register', 'CompanyController@postRegister');
+
+// Content Routes
+Route::get('/content/view', 'ContentController@getContent');
+Route::post('/content/create', 'ContentController@postContent');
+Route::get('/content/test', 'ContentController@test');

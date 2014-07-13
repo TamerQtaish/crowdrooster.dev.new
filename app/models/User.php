@@ -20,6 +20,34 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password');
 
 	/**
+	 * Link relationship - one to many
+	 */
+	public function links() {
+		return $this->hasMany('Link', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+	}
+
+	/**
+	 * Action Log relationship - one to many
+	 */
+	public function actionLogs() {
+		return $this->hasMany('ActionLog', 'user_id')->where('soft_deleted', 0);
+	}
+	
+	/**
+	 * Address relationship - one to many
+	 */
+	public function addresses() {
+		return $this->hasMany('Address', 'object_id')->where('object_type', 1)->where('soft_deleted', 0);
+	}
+	
+	/**
+	 * Access relationship - one to many
+	 */
+	public function access() {
+		return $this->hasMany('Access', 'user_id')->where('soft_deleted', 0);
+	}
+	
+	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed
@@ -87,7 +115,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	static public function checkEmailExists($email)
 	{
-		if($x = is_object(User::where('email', $email)->where('soft_deleted', 0)->first())) {
+		if(is_object(User::where('email', $email)->where('soft_deleted', 0)->first())) {
 			return true;
 		} else {
 			return false;
