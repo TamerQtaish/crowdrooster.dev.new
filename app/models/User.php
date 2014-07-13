@@ -4,37 +4,6 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
-
-	 protected $fillable = ['email',
-				'password',
-				'first_name',
-				'first_name',
-				'signup_ip',
-				'last_ip',
-				'phone',
-				''];
-	 /*
-+----------------+---------------------+------+-----+---------+----------------+
-| Field          | Type                | Null | Key | Default | Extra          |
-+----------------+---------------------+------+-----+---------+----------------+
-| id             | int(12) unsigned    | NO   | PRI | NULL    | auto_increment |
-| email          | varchar(60)         | YES  | MUL | NULL    |                |
-| password       | varchar(60)         | YES  |     | NULL    |                |
-| first_name     | varchar(30)         | YES  |     | NULL    |                |
-| last_name      | varchar(30)         | YES  |     | NULL    |                |
-| signup_ip      | varchar(30)         | YES  |     | NULL    |                |
-| last_ip        | varchar(30)         | YES  |     | NULL    |                |
-| last_on        | int(12)             | YES  |     | 0       |                |
-| phone          | varchar(30)         | YES  |     | NULL    |                |
-| remember_token | varchar(100)        | YES  |     | NULL    |                |
-| user_type      | tinyint(3) unsigned | YES  |     | 1       |                |
-| t_and_c        | tinyint(3) unsigned | YES  |     | 0       |                |
-| require_info   | tinyint(3) unsigned | YES  |     | 0       |                |
-| soft_deleted   | tinyint(3) unsigned | YES  |     | 0       |                |
-| created_at     | datetime            | NO   |     | NULL    |                |
-| updated_at     | datetime            | NO   |     | NULL    |                |
-+----------------+---------------------+------+-----+---------+----------------+
-	 */
 	 
 	/**
 	 * The database table used by the model.
@@ -124,6 +93,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return false;
 		}
 	}
-
-
 }
